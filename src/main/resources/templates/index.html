@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Full Stack Java App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Full Stack Java App</h1>
+    <p>This is the home page.</p>
+
+    <form th:action="@{/create}" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <button type="submit">Add Customer</button>
+    </form>
+
+    <h3>Search:</h3><form th:action="@{/search}" method="get">
+        <input type="text" name="query" placeholder="Search by name, or email" required />
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        <li th:each="customer : ${customers}">
+            <span th:text="${customer.name}">Customer Name</span> - 
+            (Email: <span th:text="${customer.email}">Customer Email</span>)
+        </li>
+    </ul>
+
+</body>
+</html>
